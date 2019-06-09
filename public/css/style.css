@@ -159,3 +159,17 @@ section.box-two {
 .box-text {
     margin-top: 15px;
 }
+
+.footer-site {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #232323;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.footer-site img {
+    width: 100px;
+}
