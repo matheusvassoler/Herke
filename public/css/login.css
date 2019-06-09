@@ -1,0 +1,86 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Lato', 'Arial', sans-serif;
+    background:linear-gradient(0deg,rgba(55,55,55,0.7),rgba(55,55,55,0.7)),url('../images/close-up-handlebar-scooter-1731751.jpg');
+    background-size: cover;
+    color: #fff;
+}
+
+.site {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-form {
+    width: 205px;
+}
+
+.password-input {
+    margin-top: 20px;
+}
+
+.submit-input {
+    margin-top: 20px;
+}
+
+.input input {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 40px;
+}
+
+.google-button {
+    height: 40px;
+    border-width: 0;
+    background: white;
+    color: #737373;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
+    transition-property: background-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    padding: 0;
+    width: 205px;
+    margin-bottom: 20px;
+    cursor: pointer
+}
+
+.google-button__icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 8px 0 8px 8px;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+}
+
+.google-button__text {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto',arial,sans-serif;
+}
+
