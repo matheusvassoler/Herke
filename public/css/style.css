@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Lato', 'Arial', sans-serif;
+}
+
+.site {
+    height: 100%;
+}
+
+.box-one {
+    background: url(../images/slider-bg.png) 0 100% repeat-x;
+    position: relative;
+    height: 100%;
+}
+
+.slide-text {
+    float: left;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.slide-text h1 {
+    font-weight: 300;
+    font-size: 36px;
+    color: #686868;
+    margin-bottom: 20px;
+}
+
+.slide-text p {
+    color: #686868;
+    margin-bottom: 30px;
+}
+
+.signup-button {
+    text-decoration: none;
+    color: #814ac4;
+    border: 1px solid #814ac4;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.slider-hill {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.slider-house {
+    position: absolute;
+    right: 110px;
+    bottom: -.5px;
+}
+
+.slider-scooter {
+    position: absolute;
+    left: 310px;
+    bottom: -14px;
+    width: 200px;
+}
+
+.slider-sun {
+    position: absolute;
+    right: 365px;
+    bottom: 100px;
+}
+
+.slider-birds1 {
+    position: absolute;
+    right: 470px;
+    bottom: 75px;
+}
+
+.slider-birds2 {
+    position: absolute;
+    right: 40px;
+    bottom: 150px;
+}
+
+section.box-two {
+    height: 100%;
+    background-color: #814ac4;
+}
+
+.title {
+    color: #fff;
+    font-weight: 300;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.box-two-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.box-two-container p {
+    width: 50%;
+}
+
+.traffic-jam {
+    margin-top: 100px;
+    margin-left: 50px;
+    width: 300px;
+}
+
