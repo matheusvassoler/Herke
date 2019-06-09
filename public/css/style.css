@@ -98,7 +98,7 @@ section.box-two {
     font-weight: 300;
     font-size: 30px;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 60px;
 }
 
 .box-two-container {
@@ -106,15 +106,56 @@ section.box-two {
     align-items: center;
     justify-content: space-between;
     color: #fff;
+    margin-top: 100px;
 }
 
-.box-two-container p {
+.box-two-text {
     width: 50%;
+    margin-right: 50px;
 }
 
 .traffic-jam {
-    margin-top: 100px;
     margin-left: 50px;
     width: 300px;
 }
 
+.box-three-title {
+    color: #686868;
+}
+
+.box-three-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.box-element {
+    width: 190px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 100px;
+}
+
+.box-image {
+    text-align: center;
+}
+
+.box-image img {
+    width: 150px;
+}
+
+.box-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.box-text {
+    text-align: center;
+}
+
+.box-text {
+    margin-top: 15px;
+}
