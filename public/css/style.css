@@ -16,16 +16,55 @@ body {
     height: 100%;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    color: #686868;
+}
+
+.header-list {
+    list-style: none;
+}
+
+.header-list li {
+    display: inline;
+    margin: 0 20px;
+}
+
+.login-button {
+    color: #686868;
+    text-decoration: none;
+    border: 1px solid #686868;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.register-button {
+    background-color: #814ac4;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #814ac4;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.logo {
+    width: 100px;
+}
+
 .box-one {
     background: url(../images/slider-bg.png) 0 100% repeat-x;
     position: relative;
-    height: 100%;
+    height: 82%;
 }
 
 .slide-text {
     float: left;
     width: 50%;
     margin-left: 50px;
+    margin-top: 70px;
 }
 
 .slide-text h1 {
@@ -67,7 +106,7 @@ body {
     position: absolute;
     left: 310px;
     bottom: -14px;
-    width: 200px;
+    width: 150px;
 }
 
 .slider-sun {
@@ -107,6 +146,7 @@ section.box-two {
     justify-content: space-between;
     color: #fff;
     margin-top: 100px;
+    flex-wrap: wrap;
 }
 
 .box-two-text {
@@ -172,4 +212,27 @@ section.box-two {
 
 .footer-site img {
     width: 100px;
+}
+
+.box-four {
+    height: 100%;
+    background-color: #f5f5f5;
+}
+
+img.smartphone-image {
+    width: 300px;
+}
+
+.box-four-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 70px;
+}
+
+.box-four-content p {
+    font-size: 30px;
+    color: #686868;
+    margin-right: 50px;
+    color: #814ac4;
 }
