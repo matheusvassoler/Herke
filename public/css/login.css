@@ -90,7 +90,7 @@ input[type="password"]
     transition: all .3s;
 }
 
-input[type="submit"] {
+.submitButton {
     display: block;
     width: 100%;
     margin: 1.5rem 0;
@@ -113,14 +113,14 @@ input[type="submit"] {
     transition: all .3s;
 }
 
-input[type="submit"]:active,
-input[type="submit"]:focus,
-input[type="submit"]:visited,
-input[type="submit"]:hover {
+.submitButton:active,
+.submitButton:focus,
+.submitButton:visited,
+.submitButton:hover {
     background: rgb(34, 156, 255);
 }
 
-button,input[type="submit"] {
+button,.submitButton {
     cursor: pointer;
 }
 
@@ -128,7 +128,7 @@ button,input[type="submit"] {
     text-align: center;
 }
 
-form > h3 {
+.form > h3 {
     text-align: center;
 }
 
@@ -178,7 +178,7 @@ form > h3 {
     grid-area: centerRight;
 }
 
-.login > form {
+.login > .form {
     width: 400px;
     margin: 0 3rem;
 }
@@ -284,7 +284,7 @@ form > h3 {
                         "centerRight";
     }
 
-    .login > form {
+    .login > .form {
         width: 100%;
         margin: 0 3rem;
     }
