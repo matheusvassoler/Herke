@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'Lato', 'Arial', sans-serif;
+}
+
+.site {
+    height: 100%;
+}
+
+.map-container {
+    height: 83.2%;
+}
+
+#mapid {  
+    height: 100%;
+    z-index: 10;
+}
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+  /* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  height: 50%;
+}
+  
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.form {
+  margin-top: 10px;
+}
+
+
+#qtyScooter {
+  border-radius: 4px;
+  height: 30px;
+  width: 40px;
+  padding-left: 5px;
+  background: #fff;
+  border: 1px solid rgb(212, 212, 212);
+  color: rgb(78, 78, 78);
+}
+
+#submit-button {
+  padding: 5px 20px;
+  text-transform: uppercase;
+  background: #814ac4;
+  border: 1px solid #814ac4;
+  color: rgb(247, 247, 247);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 5px;
+  height: 30px;
+}

@@ -44,7 +44,7 @@ function create(name, lastName, email, password) {
 
 function writeUserData(userId, name, lastName, level) {
     firebase.database().ref('users/' + userId).set({
-      username: name,
+      name: name,
       lastName: lastName,
       level: level
       //some more user data
