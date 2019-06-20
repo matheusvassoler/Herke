@@ -1,3 +1,8 @@
+//Variable to identify if user selected two coordinates to get the distance
+var corCount = 0;
+
+var latLng = [];
+
 window.onload = function() {
     loadMarker();
     loadScooter();
@@ -27,7 +32,7 @@ function loadMarker() {
         icon.options.shadowSize = [0,0];
         console.log(lat);
         console.log(lng);
-        var mapa = L.marker([lat, lng], {mapId: key}).on('click', onClick).addTo(mymap);
+        var mapa = L.marker([lat, lng], {mapId: key}).addTo(mymap);
         mapa._icon.id = key;
 
         //console.log(childData);
@@ -40,14 +45,17 @@ function loadMarker() {
 
 function onClick(e) {
     //alert(this.getLatLng());
-    alert("You clicked on marker with customId: " +this.options.mapId);
+    alert("You clicked on marker with customId: " +this.options.icon.options.id);
+    console.log(this.options.icon.options.id);
+
+    var parkingId = getParkingId(this.options.icon.options.id);
+
+    latLng = getParkingCoord(parkingId);
 }
 
 function getKey(data) {
     var parkingId = data.val()
     var keys = Object.keys(parkingId)
-    
-    
 }
 
 function loadScooter() {
@@ -135,15 +143,16 @@ function gotData(data) {
 
     console.log(listLatLng);
 
-    let scooter = L.icon({
-        iconUrl: 'images/66527.svg',
-        shadowUrl: 'images/66527.svg',
-        iconSize:     [28, 24], // size of the icon
-        shadowSize:   [0, 0] // size of the shadow 
-    });
-
     for(var i=0; i<listLatLng.length; i++) {
-        L.marker([listLatLng[i][0], listLatLng[i][1]], {icon: scooter}).addTo(mymap);
+        let scooter = L.icon({
+            iconUrl: 'images/66527.svg',
+            shadowUrl: 'images/66527.svg',
+            iconSize:     [28, 24], // size of the icon
+            shadowSize:   [0, 0], // size of the shadow 
+            id: keys[i]
+        });
+
+        L.marker([listLatLng[i][0], listLatLng[i][1]], {icon: scooter}).on('click', onClick).addTo(mymap);
     }
     //L.marker([lat, lng], {icon: scooter}).addTo(mymap);
 }
@@ -184,6 +193,26 @@ function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
+function getDistance(origin, destination) {
+    // return distance in meters
+    var lon1 = toRadian(origin[1]),
+        lat1 = toRadian(origin[0]),
+        lon2 = toRadian(destination[1]),
+        lat2 = toRadian(destination[0]);
+
+    var deltaLat = lat2 - lat1;
+    var deltaLon = lon2 - lon1;
+
+    var a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
+    var c = 2 * Math.asin(Math.sqrt(a));
+    var EARTH_RADIUS = 6371;
+    return c * EARTH_RADIUS * 1000;
+}
+
+function toRadian(degree) {
+    return degree*Math.PI/180;
+}
+
 //Load map
 var mymap = L.map('mapid').setView([ -22.8723, -47.044], 15);
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYWxib3JkaWdub24iLCJhIjoiY2l0MzFlZXdzMHRyNjJvcGdnY2txZXdsMCJ9.IOAXYE1_mrHHHUbVMxR59Q', {
@@ -193,3 +222,44 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
         'Imagery © <a href="http://mapbox.com">Mapbox</a>',
     id: 'mapbox.streets'
 }).addTo(mymap);
+
+//Open modal when user clicks on somewhare of the map
+mymap.on('click', function(e) {
+    //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+    //modal.style.display = "block";
+    alert(e.latlng.lat + " " + e.latlng.lng);
+
+    if(corCount == 1) {
+        corCount = 0;
+    }
+
+    distance = getDistance(latLng, [e.latlng.lat, e.latlng.lng]).toFixed(1);
+});
+
+function getParkingId(scooterId) {
+
+    var ref = firebase.database().ref("/scooter/"+scooterId);
+
+    var idParking;
+
+    ref.on("value", function(snapshot) {
+        var data = snapshot.val()
+        idParking = data.parkingId;
+    });
+
+    return idParking;
+}
+
+function getParkingCoord(parkingId) {
+    var ref = firebase.database().ref("/parking/"+parkingId);
+
+    var latLng = [];
+
+    ref.on("value", function(snapshot) {
+        var data = snapshot.val();
+        latLng.push(data.lat);
+        latLng.push(data.lng);
+    });
+
+    return latLng;
+}
