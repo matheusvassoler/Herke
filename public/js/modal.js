@@ -1,11 +1,21 @@
 //Get the submit button
 var submitButton = document.getElementById("submit-button");
 
+var btnRegisterScooter = document.getElementById('register-scooter');
+
+var btnDeleteParking = document.getElementById('delete-parking');
+
 // Get the modal
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
+
+var modalTitle = document.getElementsByClassName('modal-title')[0];
+
+var spanModal = document.getElementsByClassName('span-address')[0];
+
+var spanAddress = document.getElementById('address');
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -30,7 +40,12 @@ window.onclick = function(event) {
 //Open modal when user clicks on somewhare of the map
 mymap.on('click', function(e) {
     //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+    modalTitle.innerHTML = "Cadastrar estacionamento e patinete";
+    spanModal.style.display = "inline";
+    btnRegisterScooter.style.display = "none";
+    submitButton.style.display = "block";
     modal.style.display = "block";
+    btnDeleteParking.style.display = "none";
     var jsonResponse = getAddressByLatLng(e.latlng.lat, e.latlng.lng)
 
     //Get two inputs to insert lat and lng value
@@ -106,6 +121,17 @@ function registerScooter(parkingId) {
 }
 
 submitButton.addEventListener('click', resgisterParking);
+
+btnRegisterScooter.addEventListener('click', function() {
+  alert(parId);
+  registerScooter(parId);
+})
+
+btnDeleteParking.addEventListener('click', function() {
+  deleteParking(parId);
+  modal.style.display = "none";
+  document.location.reload(true);
+})
 
 
 

@@ -1,6 +1,39 @@
 //Variable to identify if user selected two coordinates to get the distance
 var corCount = 0;
 
+var status = 0;
+
+var scooterId;
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+//Get the button that allow the trip
+var btnConfirm = document.getElementById('submit-button');
+
+var btnCon = document.getElementById('confirm-button');
+btnCon.style.display = "none";
+
+var spanModal = document.getElementsByClassName('span-address')[0];
+
+var modalContent = document.getElementById('modal-content');
+modalContent.style.height = "25%";
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+  
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}
+
 var latLng = [];
 
 window.onload = function() {
@@ -32,7 +65,7 @@ function loadMarker() {
         icon.options.shadowSize = [0,0];
         console.log(lat);
         console.log(lng);
-        var mapa = L.marker([lat, lng], {mapId: key}).addTo(mymap);
+        var mapa = L.marker([lat, lng], {mapId: key}).on('click', onClickMarker).addTo(mymap);
         mapa._icon.id = key;
 
         //console.log(childData);
@@ -43,15 +76,76 @@ function loadMarker() {
     ref.on('value', getKey);
 }
 
+function onClickMarker(e) {
+    var parkingId = this.options.mapId;
+
+    latitudeLongitude = getParkingCoord(parkingId);
+
+    alert(e.latlng.lat + " " + e.latlng.lng);
+    alert(status);
+    if(status == 1) {
+        distance = getDistance(latLng, latitudeLongitude).toFixed(1);
+
+        var spentTime = getSpentTime(distance);
+
+        var spentMoney = getSpentMoney(distance, spentTime).toFixed(2);
+
+        alert(spentMoney);
+
+        latlng = [];
+
+        status = 0;
+
+        changeScooterLocation(parkingId);
+
+        spanModal.innerHTML = "Muito obrigado por utilizar nossos serviços! O preço pelo uso do patinete foi de R$ " + spentMoney;
+        btnCon.style.display = "block";
+        btnConfirm.style.display = "none";
+        modal.style.display = "block";
+    } else {
+        spanModal.innerHTML = "Antes de selecionar o local de destino, selecione um patinete";
+        btnCon.style.display = "block";
+        btnConfirm.style.display = "none";
+        modal.style.display = "block";
+    }
+}
+
+function changeScooterLocation(parkingId) {
+    alert("ID Scooter: " + scooterId);
+
+    var data = {
+        parkingId: parkingId
+    };
+
+    firebase.database().ref("scooter/" + scooterId).update(data);
+}
+
 function onClick(e) {
     //alert(this.getLatLng());
     alert("You clicked on marker with customId: " +this.options.icon.options.id);
     console.log(this.options.icon.options.id);
 
+    scooterId = this.options.icon.options.id;
+
     var parkingId = getParkingId(this.options.icon.options.id);
 
     latLng = getParkingCoord(parkingId);
+
+    spanModal.innerHTML = "Deseja alugar o patinete selecionado? Se sim, clique em confirmar e selecione um dos locais de destino disponiveis";
+    btnCon.style.display = "none";
+    btnConfirm.style.display = "block";
+    modal.style.display = "block";
 }
+
+btnConfirm.addEventListener('click', function() {
+    status = 1;
+    modal.style.display = "none";
+});
+
+btnCon.addEventListener('click', function() {
+    modal.style.display = "none";
+    document.location.reload(true);
+});
 
 function getKey(data) {
     var parkingId = data.val()
@@ -206,6 +300,7 @@ function getDistance(origin, destination) {
     var a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
     var c = 2 * Math.asin(Math.sqrt(a));
     var EARTH_RADIUS = 6371;
+
     return c * EARTH_RADIUS * 1000;
 }
 
@@ -227,14 +322,36 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
 mymap.on('click', function(e) {
     //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
     //modal.style.display = "block";
-    alert(e.latlng.lat + " " + e.latlng.lng);
+    /*alert(e.latlng.lat + " " + e.latlng.lng);
 
     if(corCount == 1) {
         corCount = 0;
     }
 
     distance = getDistance(latLng, [e.latlng.lat, e.latlng.lng]).toFixed(1);
+
+    var spentTime = getSpentTime(distance);
+
+    var spentMoney = getSpentMoney(distance, spentTime).toFixed(2);
+
+    alert(spentMoney);*/
 });
+
+function getSpentMoney(distance, spentTime) {
+    var distanceInKm = distance / 1000;
+
+    var totalInMinutes = 0.25 * spentTime;
+    var totalInKm = 0.50 * distanceInKm
+
+    return totalInKm + totalInMinutes;
+}
+
+function getSpentTime(distance) {
+    //Constant: 10km per hour is 1,38889 meters per second
+    const metersPerSecond = 1.38889;
+
+    return distance/metersPerSecond/60
+}
 
 function getParkingId(scooterId) {
 

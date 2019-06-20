@@ -13,24 +13,15 @@
             <div id="myModal" class="modal">
 
                     <!-- Modal content -->
-                    <div class="modal-content">
+                    <div class="modal-content" id="modal-content">
                         <span class="close">&times;</span>
-                        <h2 class="modal-title">Cadastrar estacionamento e patinete</h2>
+                        <h2 class="modal-title">Alugar patinete</h2>
                         <div class="modal-container">
-                            <span class="span-address">Endereço: <span id="address"></span></span>
+                            <span class="span-address">Deseja alugar o patinete selecionado? Se sim, clique em confirmar e selecione um dos locais de destino disponiveis</span>
                             <div class="form">
                                 <div class="input">
-                                    <label for="qtyScooter">Quantidade de patinetes no local:</label>
-                                    <input type="number" name="qtyScooter" id="qtyScooter" min="0" />
-                                </div>
-                                <div class="input">
-                                    <input type="hidden" id="lat" />
-                                </div>
-                                <div class="input">
-                                    <input type="hidden" id="lng" />
-                                </div>
-                                <div class="input">
-                                    <button id="submit-button">Cadastrar</button>
+                                    <button id="submit-button">Confirmar</button>
+                                    <button id="confirm-button">Confirmar</button>
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,5 @@
+var parId;
+
 window.onload = function() {
     loadMarker();
     loadScooter();
@@ -41,6 +43,16 @@ function loadMarker() {
 function onClick(e) {
     //alert(this.getLatLng());
     alert("You clicked on marker with customId: " +this.options.mapId);
+    parId = this.options.mapId;
+
+    spanModal.style.display = "none";
+    modalTitle.innerHTML = "Cadastro de patinetes";
+    modal.style.display = "block";
+    btnRegisterScooter.style.display = "block";
+    btnDeleteParking.style.display = "block";
+    submitButton.style.display = "none";
+
+    //registerScooter(parkingId);
 }
 
 function getKey(data) {
@@ -193,3 +205,28 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=p
         'Imagery © <a href="http://mapbox.com">Mapbox</a>',
     id: 'mapbox.streets'
 }).addTo(mymap);
+
+function deleteParking(parkingId) {
+    firebase.database().ref('parking/' + parkingId).remove();
+    
+    var ref = firebase.database().ref("scooter");
+
+    ref.on("value", function(snapshot) {
+        var keys = Object.keys(snapshot.val());
+        var count = 0;
+
+        snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
+
+        var parkId = childData.parkingId;
+
+        var key = keys[count];
+        
+        if(parkId == parkingId) {
+            firebase.database().ref('scooter/' + key).remove();
+        }
+
+        count += 1;
+        });
+    });
+}

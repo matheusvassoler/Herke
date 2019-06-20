@@ -103,3 +103,45 @@ body {
   margin-top: 5px;
   height: 30px;
 }
+
+#confirm-button {
+  padding: 5px 20px;
+  text-transform: uppercase;
+  background: #814ac4;
+  border: 1px solid #814ac4;
+  color: rgb(247, 247, 247);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 5px;
+  height: 30px;
+}
+
+#register-scooter {
+  padding: 5px 20px;
+  text-transform: uppercase;
+  background: #814ac4;
+  border: 1px solid #814ac4;
+  color: rgb(247, 247, 247);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 5px;
+  height: 30px;
+}
+
+#delete-parking {
+  padding: 5px 20px;
+  text-transform: uppercase;
+  background: #c44a4a;
+  border: 1px solid #c44a4a;
+  color: rgb(247, 247, 247);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 5px;
+  height: 30px;
+}
