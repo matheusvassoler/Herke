@@ -44,15 +44,18 @@ function getAccessLevel(userId) {
             var ref = firebase.database().ref("users/" + userId);
 
             var accessLevel;
-        
+            console.log(userId);
             ref.on("value", function(snapshot) {
                 var data = snapshot.val()
         
                 accessLevel = data.level;
 
+                console.log(data);
+                console.log(userId);
                 resolve(accessLevel);
             });
         } catch (e) {
+            console.log(e);
             reject(e);
         }
     });
@@ -92,11 +95,14 @@ function signIn(provider) {
         // ...
         //Get uid of the user
         var uid = user.uid;
+        console.log(uid);
 
         getAccessLevel(uid).then(function (result) {
             if(result == 1) {
+                alert("ADMIN");
                 window.location.replace("../public/dashboard.html");
             } else {
+                alert("Comum");
                 window.location.replace("../public/rent.html");
             }
         });

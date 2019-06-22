@@ -123,7 +123,7 @@ function registerScooter(parkingId) {
 submitButton.addEventListener('click', resgisterParking);
 
 btnRegisterScooter.addEventListener('click', function() {
-  alert(parId);
+  //alert(parId);
   registerScooter(parId);
 })
 

@@ -143,10 +143,14 @@ body {
   font-size: 13px;
   cursor: pointer;
   margin-top: 5px;
-  height: 30px;
+  height: 35px;
 }
 
-#li-change-password a {
+.li-link a {
   color: #686868;
   text-decoration: none;
+}
+
+@media (min-width: 620px) {
+  header { display: none }
 }

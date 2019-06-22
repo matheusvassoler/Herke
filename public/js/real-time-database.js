@@ -10,7 +10,7 @@ var authGoogleButton = document.getElementById('authGoogleButton');
 
 //Function when user click on register button
 registerButton.addEventListener('click', function() {
-    alert(namee.value);
+    //createe();
     create(namee.value, lastName.value, email.value, password.value);
     setTimeout( function() {
         window.location.replace("../public/rent.html");
@@ -81,21 +81,22 @@ function getAccessLevel(userId) {
     });
 }
 
-/*
-function create(name, lastName, email, password) {
+
+function createe() {
     var data = {
         //name: name,
-        lastName: lastName,
-        email: email,
-        password: password
+        lastName: "Oi",
+        email: "Oi",
+        password: "Oi"
     };
 
     //Acessa o banco de dados firebase com base na referencia de um filho, que no caso se chama users
     //Se a colecao nao existir, ela serah criada
-    return firebase.database().ref().child('users').push(data);
-}*/
+    return firebase.database().ref().child('clients').push(data);
+}
 
 function create(name, lastName, email, password) {
+    createe(name, lastName, email, password);
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)

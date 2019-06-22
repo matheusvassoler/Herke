@@ -42,7 +42,7 @@ function loadMarker() {
 
 function onClick(e) {
     //alert(this.getLatLng());
-    alert("You clicked on marker with customId: " +this.options.mapId);
+    //alert("You clicked on marker with customId: " +this.options.mapId);
     parId = this.options.mapId;
 
     spanModal.style.display = "none";

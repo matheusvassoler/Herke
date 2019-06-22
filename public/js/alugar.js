@@ -20,7 +20,7 @@ btnCon.style.display = "none";
 var spanModal = document.getElementsByClassName('span-address')[0];
 
 var modalContent = document.getElementById('modal-content');
-modalContent.style.height = "25%";
+modalContent.style.height = "200px";
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -81,8 +81,8 @@ function onClickMarker(e) {
 
     latitudeLongitude = getParkingCoord(parkingId);
 
-    alert(e.latlng.lat + " " + e.latlng.lng);
-    alert(status);
+    //alert(e.latlng.lat + " " + e.latlng.lng);
+    //alert(status);
     if(status == 1) {
         distance = getDistance(latLng, latitudeLongitude).toFixed(1);
 
@@ -90,7 +90,7 @@ function onClickMarker(e) {
 
         var spentMoney = getSpentMoney(distance, spentTime).toFixed(2);
 
-        alert(spentMoney);
+        //alert(spentMoney);
 
         latlng = [];
 
@@ -111,7 +111,7 @@ function onClickMarker(e) {
 }
 
 function changeScooterLocation(parkingId) {
-    alert("ID Scooter: " + scooterId);
+    //alert("ID Scooter: " + scooterId);
 
     var data = {
         parkingId: parkingId
@@ -122,7 +122,7 @@ function changeScooterLocation(parkingId) {
 
 function onClick(e) {
     //alert(this.getLatLng());
-    alert("You clicked on marker with customId: " +this.options.icon.options.id);
+    //alert("You clicked on marker with customId: " +this.options.icon.options.id);
     console.log(this.options.icon.options.id);
 
     scooterId = this.options.icon.options.id;
