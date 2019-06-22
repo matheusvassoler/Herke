@@ -289,3 +289,12 @@ button,.submitButton {
         margin: 0 3rem;
     }
 }
+
+header {
+    display: none;
+    background-color: #77a42b;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}

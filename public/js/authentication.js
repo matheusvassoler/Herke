@@ -8,29 +8,63 @@ var displayName = document.getElementById('displayName');
 
 var loginButton = document.getElementById('loginButton');
 
+var alertHeader = document.getElementById("alert-header");
+var passwordMessage = document.getElementById("password-message");
+
 loginButton.addEventListener('click', function() {
     firebase
         .auth()
         .signInWithEmailAndPassword(email.value, password.value)
         .then(function (result) {
-            console.log(result);
-            displayName.innerText = 'Bem vindo';
-            alert(displayName);
+            //Get the user
+            var user = result.user;
+
+            //Get uid of the user
+            var uid = user.uid;
+
+            getAccessLevel(uid).then(function (result) {
+                if(result == 1) {
+                    window.location.replace("../public/dashboard.html");
+                } else {
+                    window.location.replace("../public/rent.html");
+                }
+            });
+            //window.location.replace("http://www.w3schools.com");
         })
         .catch(function (error) {
             console.error(error.code);
             console.error(error.message);
             alert('Falha ao autenticar')
         })
-})
+});
+
+function getAccessLevel(userId) {
+    return new Promise(function (resolve, reject) {
+        try {
+            var ref = firebase.database().ref("users/" + userId);
+
+            var accessLevel;
+        
+            ref.on("value", function(snapshot) {
+                var data = snapshot.val()
+        
+                accessLevel = data.level;
+
+                resolve(accessLevel);
+            });
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
 
 //Logout
-function log(){
+function log() {
     firebase
         .auth()
         .signOut()
         .then(function() {
-
+            window.location.replace("../public/login.html");
         })
         .catch(function (error) {
 
@@ -56,7 +90,16 @@ function signIn(provider) {
         // The signed-in user info.
         var user = result.user;
         // ...
-        alert('Sucesso');
+        //Get uid of the user
+        var uid = user.uid;
+
+        getAccessLevel(uid).then(function (result) {
+            if(result == 1) {
+                window.location.replace("../public/dashboard.html");
+            } else {
+                window.location.replace("../public/rent.html");
+            }
+        });
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;

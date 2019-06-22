@@ -145,3 +145,8 @@ body {
   margin-top: 5px;
   height: 30px;
 }
+
+#li-change-password a {
+  color: #686868;
+  text-decoration: none;
+}
