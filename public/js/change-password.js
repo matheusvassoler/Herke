@@ -18,7 +18,7 @@ function changePassword(password) {
         alertHeader.style.display = "flex";
         log();
         setTimeout( function() {
-            window.location.replace("../public/login.html");
+            window.location.replace("../login.html");
         }, 5000 );
       }).catch(function(error) {
         passwordMessage.innerHTML = "Falha ao trocar a senha";

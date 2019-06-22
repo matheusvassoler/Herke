@@ -13,7 +13,7 @@ registerButton.addEventListener('click', function() {
     //createe();
     create(namee.value, lastName.value, email.value, password.value);
     setTimeout( function() {
-        window.location.replace("../public/rent.html");
+        window.location.replace("../rent.html");
     }, 2000 );
 });
 
@@ -39,13 +39,18 @@ function signIn(provider) {
         //Get uid of the user
         var uid = user.uid;
 
-        getAccessLevel(uid).then(function (result) {
-            if(result == 1) {
-                window.location.replace("../public/dashboard.html");
-            } else {
-                window.location.replace("../public/rent.html");
-            }
-        });
+        writeUserData(uid, "Teste", "Teste", 0);
+
+        setTimeout( function() {
+            getAccessLevel(uid).then(function (result) {
+                if(result == 1) {
+                    window.location.replace("../dashboard.html");
+                } else {
+                    window.location.replace("../rent.html");
+                }
+            });
+        }, 3000);
+
       }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;

@@ -24,9 +24,9 @@ loginButton.addEventListener('click', function() {
 
             getAccessLevel(uid).then(function (result) {
                 if(result == 1) {
-                    window.location.replace("../public/dashboard.html");
+                    window.location.replace("../dashboard.html");
                 } else {
-                    window.location.replace("../public/rent.html");
+                    window.location.replace("../rent.html");
                 }
             });
             //window.location.replace("http://www.w3schools.com");
@@ -67,7 +67,7 @@ function log() {
         .auth()
         .signOut()
         .then(function() {
-            window.location.replace("../public/login.html");
+            window.location.replace("../login.html");
         })
         .catch(function (error) {
 
@@ -99,11 +99,9 @@ function signIn(provider) {
 
         getAccessLevel(uid).then(function (result) {
             if(result == 1) {
-                alert("ADMIN");
-                window.location.replace("../public/dashboard.html");
+                window.location.replace("../dashboard.html");
             } else {
-                alert("Comum");
-                window.location.replace("../public/rent.html");
+                window.location.replace("../rent.html");
             }
         });
       }).catch(function(error) {

@@ -20,6 +20,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             }
         });
     } else {
-        window.location.replace("../public/login.html");
+        window.location.replace("../login.html");
     }
 });

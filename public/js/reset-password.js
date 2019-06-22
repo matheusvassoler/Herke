@@ -18,7 +18,7 @@ function changePassword(email) {
         alertHeader.style.backgroundColor = "#77a42b";
         alertHeader.style.display = "flex";
         setTimeout( function() {
-            window.location.replace("../public/login.html");
+            window.location.replace("../login.html");
         }, 5000 );
     }).catch(function(error) {
         passwordMessage.innerHTML = "Falha ao enviar o e-mail";
